@@ -1,0 +1,19 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'EB Garamond', chaparral-pro, Merriweather, serif;
+}
+
+a {
+  color: steelblue;
+  text-decoration: underline;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+}
