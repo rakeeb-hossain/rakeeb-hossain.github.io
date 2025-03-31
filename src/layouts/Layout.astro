@@ -1,0 +1,49 @@
+---
+import '../styles/global.css'
+import Prose from '../components/Prose.astro'
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Append-Only</title>
+	</head>
+	<body class="bg-white flex flex-col min-h-screen">
+		<header class="container mx-auto max-w-[768px] px-4 py-16">
+			<div class="flex justify-between items-center">
+				<a href="/" class="text-2xl font-bold">Append-Only</a>
+				<nav class="space-x-6">
+					<a href="/articles" class="hover:opacity-60 transition">
+						Articles
+					</a>
+					<a href="/about" class="hover:opacity-60 transition">
+						About
+					</a>
+				</nav>
+			</div>
+		</header>
+
+		<main class="container mx-auto max-w-[768px] px-4 flex-grow">
+			<Prose>
+				<slot />
+			</Prose>
+		</main>
+
+		<footer class="mt-12">
+			<div class="container mx-auto max-w-[768px] px-4 py-6">
+				&copy; {new Date().getFullYear()} | 
+				<a href="/about" class="underline hover:opacity-60 transition">
+					Rakeeb Hossain
+				</a>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style>
+	/* Custom component styles can be added here */
+</style>

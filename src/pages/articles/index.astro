@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export function titleToSlug(title: string) {
+  return title.toLowerCase().replace(/ /g, '-');
+}
+
+// Get all articles from the collection
+const articles = await getCollection('articles');
+// Sort articles by date (newest first)
+const sortedArticles = articles.sort((a: CollectionEntry<'articles'>, b: CollectionEntry<'articles'>) => 
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<Layout>
+  <div>
+    <h1 class="prose-h1">Articles</h1>
+    
+      <div class="space-y-8">
+        {sortedArticles.map((article: CollectionEntry<'articles'>) => (
+          <div class="border-b pb-6 mb-6 last:border-0">
+            <h2 class="text-xl font-semibold mb-2">
+              <a href={`/articles/${titleToSlug(article.data.title)}`} class="hover:underline">
+                {article.data.title}
+              </a>
+            </h2>
+            <div class="text-sm text-gray-600 mb-2">
+              {new Date(article.data.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+</Layout>

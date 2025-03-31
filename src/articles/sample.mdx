@@ -1,0 +1,44 @@
+---
+layout: ../layouts/Layout.astro
+title: Sample Post2 Title
+date: 2025-03-31
+---
+
+# {frontmatter.title}
+<div class="text-gray-600 mt-2 mb-8">
+  {new Date(frontmatter.date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })}
+</div>
+
+This is a placeholder for your article content. Replace this with your actual content.
+
+## Section Heading
+
+You can write about anything here - technical concepts, personal reflections, 
+mathematical ideas, or whatever else you'd like to share.
+
+### Subsection
+
+Add more paragraphs, code blocks, lists, or any other content you want to include.
+
+```js
+// Sample code block
+function helloWorld() {
+  console.log("Hello, world!");
+}
+```
+
+# Math
+
+## Block equations 
+
+$$
+\int_0^\infty \frac{x^3}{e^x} \, dx = \frac{\pi^4}{15}
+$$
+
+## Inline equations
+
+$e^{i\pi} + 1 = 0$
