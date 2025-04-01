@@ -1,23 +1,15 @@
 ---
-layout: ../layouts/Layout.astro
-title: Sample Post2 Title
+layout: ../layouts/ArticleLayout.astro
+title: Deriving Basic Probability Theory
 date: 2025-03-31
+draft: true
 ---
-
-# {frontmatter.title}
-<div class="text-gray-600 mt-2 mb-8">
-  {new Date(frontmatter.date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })}
-</div>
 
 This is a placeholder for your article content. Replace this with your actual content.
 
 ## Section Heading
 
-You can write about anything here - technical concepts, personal reflections, 
+You can write about anything here - technical concepts, personal reflections,
 mathematical ideas, or whatever else you'd like to share.
 
 ### Subsection
@@ -33,7 +25,7 @@ function helloWorld() {
 
 # Math
 
-## Block equations 
+## Block equations
 
 $$
 \int_0^\infty \frac{x^3}{e^x} \, dx = \frac{\pi^4}{15}
