@@ -3,6 +3,8 @@ layout: ../layouts/ArticleLayout.astro
 title: 75 Hard – Founder Edition
 date: 2025-04-17
 ---
+import { Image } from 'astro:assets';
+import Day1Image from '../assets/IMG_2579.jpg';
 
 About a year and a half ago, I quit my dream new-grad job to found a startup with
 a friend. Since then, it's been quite a tumultuous journey involving
@@ -20,7 +22,6 @@ but that's mostly uninteresting and won't report much on that. My version of
 "posting a picture everyday" will be writing an entry everyday here.
 
 Let's go!
-
 
 ## Day 1
 
@@ -40,29 +41,35 @@ a clean slate.
 
 Here are some rough spaces we're considering going down:
 - Audio AI: I've been working on converting an old ebook into an audiobook
-using character voices from the show. I've encountered the whole gambit of
-audio analysis and editing tools: stem separation, enhancement, diarization,
-text-to-speech, speech-to-text, SVC, etc. I've become intimately familiar 
-with the space and I've fine-tuned nearly every modern TTS model claiming SOTA. 
-It's clear that this space is actively developing and quite fragmented (aside from ElevenLabs).
-*There HAS to be a niche product or audience in need of better audio AI tools*. TBD.
+using character voices from the show. Is this productizable? 
+I've also fine-tuned nearly every open-source TTS model claiming SOTA.
+Is there some niche audio task we can solve quickly?
 - Tariffs: huge shift right now, could be value to capture here. David is going deep into 
 this one. Can we help exporters do the compliance/paperwork necessary amidst the 
 turbulent tariff situation? Need to talk to companies dealing with export between US and Canada. 
-- Cash management/visibility: this one I'm fairly confident is a good idea. 
-After talking to the former treasurer of a large cap public company, it's clear
-that the account structure of any mid-to-large-sized company is complex. 
+- Cash management/visibility: our last idea was in treasury. After talking to the former 
+treasurer of a large cap public company, it's clear that the bank account situation of any mid-to-large-sized company is complex. 
 With fragmentation of open-banking regulations, treasurers have teams of people
 *just tracking balanaces and fees of bank accounts globally*. After reverse-engineering 
 bank APIs, I think we might have a solution here... we will tap our treasury network
 to validate this quickly.
-- Cybersecurity and LLMs: reverse-engineering involves a lot of pattern recognition.
+- Cybersecurity and LLMs: reverse-engineering involves a lot of pattern recognition
+and I've been approached a decent amount with projects here, some offering $$$.
 Can LLMs be trained/prompted to be good at it? Can I get LLMs to solve CTFs reliably? 
 If so, I think we're onto something. Can we build a pentesting agent? 
+- Anti-piracy automation: I had this idea many years ago to automate DMCA takedown notices 
+after one of my Patreon subs kept complaining about it
 
-While it's fresh on my mind, decided to think more on audio AI...
+I'm currently most optimistic about cybersecurity and anti-piracy automation. Tariff 
+stuff is cool too but not sure if we have any edge here, neither of us having much direct
+experience. Will continue to tap the 
+network on this, though.
 
 Plan for tomorrow:
 - Research cybersecurity and LLMs
-- By early afternoon, have something concrete to work on/build/validate
+- Research DMCA takedown notice stuff
+- Tap network for more tariff ideas
+- See if we can eval LLMs on a set of CTF problems
 
+<Image src={Day1Image} alt="SF skyline" width={400}/>
+Sunset from the office
