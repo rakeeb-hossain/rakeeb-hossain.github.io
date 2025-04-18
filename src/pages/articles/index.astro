@@ -7,7 +7,10 @@ export function titleToSlug(title: string) {
 }
 
 // Get all articles from the collection
-const articles = await getCollection("articles");
+const articles = (await getCollection("articles")).filter(
+  (article) => !article.data.draft,
+);
+
 // Sort articles by date (newest first)
 const sortedArticles = articles.sort(
   (a: CollectionEntry<"articles">, b: CollectionEntry<"articles">) =>
