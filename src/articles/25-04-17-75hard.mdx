@@ -170,3 +170,48 @@ contacts that can work closely and casually with us. This is the only way we
 can hit our $50k MRR target.
 
 Continuing with tariff and CTF direction tomorrow.
+
+## Day 5
+
+Monday, April 21st, 2025
+
+Went deeper into CTFs and AI agents for red-teaming today. Quite bullish that 
+there is a valuable company to be created here and that a simple AI agent 
+wrapping Claude Sonnet and with retrieval over well-known vulnerabilities/attack 
+patterns and tool-use over common security tools can probably solve a good chunk
+of CTFs. This might be our MVP. 
+
+Thought, we might be out of our depth here. I did reverse-engineer quite a bit of app 
+and web code but network security is a whole different ball game. There are really 
+technically strong teams working on this stuff like XBOW and Theori. That isn't a 
+deterrant but rather gives me pause to think if we're the right team to build this. 
+This is founder-market fit and something you hear a lot about in startup circles. 
+It's not just my expertise but the *intersection* of my expertise with my co-founder's. 
+
+Something exciting: RSA Conference (massive cybersecurity conference) is 
+in SF starting next Monday. If we build and launch something this week, we can 
+go hard on selling there. The question is what do we build that we can narrowly
+execute on in time and what do we have a unique insight in. 
+
+Some ideas:
+- Cursor/Claude Code/Windsurf for pen-testers. It's like having a really smart 
+security engineer intern. No need to remind it that you're doing security work so
+it shouldn't sensor. Capable of writing scripts, generating CTF-like attacks, 
+and providing info on vulnerabilities. Has context on attacks you've tried so far.
+Can ingest several common security formats natively (not sure what). 
+Built-in integrations with oss-fuzz-gen, proxy services, etc.
+Proofpoint would be CTF benchmarks and a nifty working demo.
+- Keep track of new vulnerabilities, bug bounty reports, etc. with a simple Slackbot integration. It summarizes
+reports from the various sources. This is stupid easy to build.
+- Single URL attack surface monitor. You give us a domain, our agent crawls 
+with amass, nmap, ffuf, subfinder. Summarize with a nice report on exposure. 
+Can provide additional information to simulate a knowledgeable attacker, 
+such as login credentials. 
+Great for bug bounty hunters, red-teamers, and reverse-engineers.
+- Code deobfuscation for app security. License check bypasses and cracking local 
+software are insanely common. Use this to test against common tooling. 
+
+Tomorrow:
+- Meeting with YC batchmate who hired a security consultant and pentester to get 
+an understanding of how the arrangement works (white-box, black-box, etc.)
+- Get building on one of the security ideas for RSAC
