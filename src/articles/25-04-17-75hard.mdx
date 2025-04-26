@@ -269,3 +269,18 @@ Thursday, April 24th, 2025
 Not much to report on today. Another day of building. Things seem to be coming 
 together quite quickly. Finished all the tool implementations and will 
 work on accuracy and tweaking system prompts for a few E2E evals tomorrow.
+
+## Day 9
+
+Friday, April 25th, 2025
+
+Evals are not performing that well. I think the context window is getting 
+blown up by HTML/JS source code. I need to use chunking and RAG to only 
+pass relevant context to the LLM. Input selection is also not working well 
+in the browser – I think a rendered markdown view that stores references to 
+the original HTML could compress things and make inputs work better. 
+Also wondering if I should look into MemGPT.
+
+Side note: async Python is a complete pain. Cancellation is really difficult 
+without it being enforced at the language level. Really makes me appreciate 
+Go context and its stdlib.
