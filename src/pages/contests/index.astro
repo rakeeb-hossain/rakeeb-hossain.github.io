@@ -5,9 +5,11 @@ import Layout from "../../layouts/Layout.astro";
 <Layout title={"Contests"}>
   <div class="not-prose">
     <h1 class="text-3xl font-bold tracking-tight mb-1">Contests</h1>
-    <p id="contests-meta" class="text-sm text-gray-600 mb-10">
+    <p id="contests-meta" class="text-sm text-gray-600 mb-8">
       Upcoming and recent rounds on Codeforces and AtCoder.
     </p>
+
+    <div id="next-contest" class="mb-10"></div>
 
     <div id="contests-root" class="grid gap-12 md:grid-cols-2">
       <p id="contests-status" class="text-gray-500 md:col-span-2">
@@ -20,18 +22,19 @@ import Layout from "../../layouts/Layout.astro";
 <script>
   import type { Contest, ContestsPayload, Judge } from "../../lib/contests";
 
-  const JUDGES: ReadonlyArray<{ id: Judge; label: string; href: string }> = [
-    { id: "codeforces", label: "Codeforces", href: "https://codeforces.com" },
-    { id: "atcoder", label: "AtCoder", href: "https://atcoder.jp/home" },
+  const JUDGES: ReadonlyArray<{ id: Judge; label: string }> = [
+    { id: "codeforces", label: "Codeforces" },
+    { id: "atcoder", label: "AtCoder" },
   ];
 
+  const MAX_UPCOMING = 3;
+  const MAX_RECENT = 3;
+
   const absoluteFmt = new Intl.DateTimeFormat(undefined, {
-    weekday: "short",
     month: "short",
     day: "numeric",
     hour: "numeric",
     minute: "2-digit",
-    timeZoneName: "short",
   });
   const relativeFmt = new Intl.RelativeTimeFormat(undefined, {
     numeric: "auto",
@@ -63,15 +66,6 @@ import Layout from "../../layouts/Layout.astro";
     return relativeFmt.format(Math.round(diff / WEEK), "week");
   }
 
-  function formatDuration(seconds: number | null): string {
-    if (seconds === null || seconds <= 0) return "";
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.round((seconds % 3600) / 60);
-    if (hours && minutes) return `${hours}h ${minutes}m`;
-    if (hours) return `${hours}h`;
-    return `${minutes}m`;
-  }
-
   function contestEndMs(contest: Contest): number {
     return contest.startMs + (contest.durationSeconds ?? 0) * 1000;
   }
@@ -79,41 +73,29 @@ import Layout from "../../layouts/Layout.astro";
   function renderContestRow(contest: Contest, now: number): HTMLElement {
     const isLive = contest.startMs <= now && now < contestEndMs(contest);
 
-    const row = el("a", "group block py-2");
+    const row = el("a", "group block py-1.5");
     row.href = contest.url;
     row.target = "_blank";
     row.rel = "noopener noreferrer";
 
-    const top = el("div", "flex items-baseline justify-between gap-3");
-    const name = el(
-      "span",
-      "font-medium text-black group-hover:underline underline-offset-2",
-      contest.name,
+    row.appendChild(
+      el(
+        "div",
+        "text-black group-hover:underline underline-offset-2",
+        contest.name,
+      ),
     );
-    top.appendChild(name);
 
-    const duration = formatDuration(contest.durationSeconds);
-    if (duration) {
-      top.appendChild(
-        el("span", "shrink-0 text-xs text-gray-500 tabular-nums", duration),
-      );
-    }
-    row.appendChild(top);
-
-    const meta = el("div", "mt-0.5 text-sm text-gray-600");
+    const meta = el("div", "mt-0.5 text-sm text-gray-500");
     if (isLive) {
-      const badge = el(
-        "span",
-        "mr-2 inline-block rounded bg-red-600 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white align-middle",
-        "Live",
+      meta.appendChild(
+        el("span", "mr-1.5 font-medium text-red-600", "● Live"),
       );
-      meta.appendChild(badge);
     }
     meta.appendChild(
       document.createTextNode(
-        `${absoluteFmt.format(contest.startMs)} · ${formatRelative(
+        `${formatRelative(contest.startMs, now)} · ${absoluteFmt.format(
           contest.startMs,
-          now,
         )}`,
       ),
     );
@@ -132,7 +114,7 @@ import Layout from "../../layouts/Layout.astro";
     section.appendChild(
       el(
         "h3",
-        "mb-1 text-xs font-semibold uppercase tracking-wider text-gray-400",
+        "mb-2 text-xs font-medium uppercase tracking-wider text-gray-400",
         title,
       ),
     );
@@ -142,7 +124,7 @@ import Layout from "../../layouts/Layout.astro";
       return section;
     }
 
-    const list = el("div", "divide-y divide-gray-100");
+    const list = el("div", "space-y-1");
     for (const contest of contests) {
       list.appendChild(renderContestRow(contest, now));
     }
@@ -151,39 +133,29 @@ import Layout from "../../layouts/Layout.astro";
   }
 
   function renderJudge(
-    config: { id: Judge; label: string; href: string },
+    config: { id: Judge; label: string },
     contests: Contest[],
     error: string | undefined,
     now: number,
   ): HTMLElement {
     const section = el("section");
-
-    const header = el("div", "mb-4 flex items-center justify-between");
-    header.appendChild(el("h2", "text-xl font-semibold", config.label));
-    const link = el("a", "text-sm text-blue-600 hover:underline", "Visit ↗");
-    link.href = config.href;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    header.appendChild(link);
-    section.appendChild(header);
+    section.appendChild(el("h2", "mb-4 text-lg font-semibold", config.label));
 
     if (error) {
       section.appendChild(
-        el(
-          "p",
-          "rounded border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700",
-          `Couldn't load ${config.label}: ${error}`,
-        ),
+        el("p", "text-sm text-gray-400", `Couldn't load ${config.label}.`),
       );
       return section;
     }
 
     const upcoming = contests
       .filter((c) => now < contestEndMs(c))
-      .sort((a, b) => a.startMs - b.startMs);
+      .sort((a, b) => a.startMs - b.startMs)
+      .slice(0, MAX_UPCOMING);
     const recent = contests
       .filter((c) => now >= contestEndMs(c))
-      .sort((a, b) => b.startMs - a.startMs);
+      .sort((a, b) => b.startMs - a.startMs)
+      .slice(0, MAX_RECENT);
 
     const groups = el("div", "space-y-6");
     groups.appendChild(
@@ -197,15 +169,58 @@ import Layout from "../../layouts/Layout.astro";
     return section;
   }
 
-  function setMeta(fetchedAtMs: number): void {
+  function setMeta(): void {
     const meta = document.getElementById("contests-meta");
     if (!meta) return;
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const updated = new Intl.DateTimeFormat(undefined, {
-      hour: "numeric",
-      minute: "2-digit",
-    }).format(fetchedAtMs);
-    meta.textContent = `Upcoming and recent rounds on Codeforces and AtCoder. Times in ${tz} · updated ${updated}.`;
+    meta.textContent = `Times shown in ${tz}.`;
+  }
+
+  function judgeName(judge: Judge): string {
+    return JUDGES.find((j) => j.id === judge)?.label ?? judge;
+  }
+
+  function renderNextContest(payload: ContestsPayload, now: number): void {
+    const host = document.getElementById("next-contest");
+    if (!host) return;
+    host.replaceChildren();
+
+    const next = [...payload.codeforces, ...payload.atcoder]
+      .filter((c) => c.startMs > now)
+      .sort((a, b) => a.startMs - b.startMs)[0];
+    if (!next) return;
+
+    const card = el(
+      "a",
+      "group block rounded-lg border border-gray-200 p-4 transition hover:border-gray-400",
+    );
+    card.href = next.url;
+    card.target = "_blank";
+    card.rel = "noopener noreferrer";
+
+    card.appendChild(
+      el(
+        "div",
+        "text-xs font-medium uppercase tracking-wider text-gray-400",
+        "Next contest",
+      ),
+    );
+    card.appendChild(
+      el(
+        "div",
+        "mt-1 font-medium text-black group-hover:underline underline-offset-2",
+        next.name,
+      ),
+    );
+    card.appendChild(
+      el(
+        "div",
+        "mt-0.5 text-sm text-gray-500",
+        `${judgeName(next.judge)} · ${formatRelative(next.startMs, now)} · ${absoluteFmt.format(next.startMs)}`,
+      ),
+    );
+
+    host.appendChild(card);
   }
 
   function render(payload: ContestsPayload): void {
@@ -221,7 +236,7 @@ import Layout from "../../layouts/Layout.astro";
         renderJudge(config, contests, payload.errors[config.id], now),
       );
     }
-    setMeta(payload.fetchedAtMs);
+    setMeta();
   }
 
   function showError(): void {
