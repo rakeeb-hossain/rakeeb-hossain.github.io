@@ -3,7 +3,7 @@
 The design aesthetic for this site. The goal: a quiet, text-first
 "engineering logbook" that reads like a systems researcher's notebook —
 serif prose for thinking and writing, a monospace accent for the engineering
-signal, warm paper, and one restrained signature color.
+signal, cool paper, and one restrained signature color.
 
 All design decisions live as **tokens** in [`src/styles/global.css`](src/styles/global.css)
 (a Tailwind v4 `@theme` block). Change a token there and it propagates
@@ -17,10 +17,10 @@ site-wide.
    and typography carry the page.
 2. **Two voices.** A serif for reading (researcher) + a monospace for metadata,
    navigation, code, and the brand (engineer). Nothing else.
-3. **One accent, used sparingly.** The clay/rust accent appears on links and
+3. **One accent, used sparingly.** The deep-maroon accent appears on links and
    hover states only — never on large fills.
-4. **Warm, not stark.** Off-white paper and warm near-black ink instead of pure
-   black-on-white.
+4. **Soft, not stark.** Cool off-white paper and a cool near-black ink instead
+   of pure black-on-white.
 5. **Systems signals are tasteful.** ISO dates, a blinking `_` cursor, monospace
    labels — subtle nods, not a retro-terminal costume.
 
@@ -46,22 +46,26 @@ site-wide.
 
 | Token            | Value     | Tailwind utility | Use |
 | ---------------- | --------- | ---------------- | --- |
-| `--color-paper`  | `#faf9f7` | `bg-paper`       | Page background (warm off-white) |
-| `--color-ink`    | `#1c1b19` | `text-ink`       | Primary text (warm near-black) |
-| `--color-muted`  | `#6b6862` | `text-muted`     | Metadata, dates, nav, labels |
-| `--color-rule`   | `#e6e3dd` | `border-rule`    | Hairline dividers |
-| `--color-code-bg`| `#f1efea` | `bg-code-bg`     | Inline code + code-block background |
-| `--color-accent` | `#b5482b` | `text-accent`    | Links & hover (clay/rust) |
+| `--color-paper`  | `#f5f6f8` | `bg-paper`       | Page background (cool off-white) |
+| `--color-ink`    | `#16181d` | `text-ink`       | Primary text (cool near-black) |
+| `--color-muted`  | `#656b76` | `text-muted`     | Metadata, dates, nav, labels |
+| `--color-rule`   | `#e3e6ea` | `border-rule`    | Hairline dividers |
+| `--color-code-bg`| `#eceef1` | `bg-code-bg`     | Inline code + code-block background |
+| `--color-accent` | `#7f1d1d` | `text-accent`    | Links & hover (deep maroon) |
 
 - **To change the accent**, edit `--color-accent` once (e.g. `#1d4ed8` for the
-  classic-blue direction we considered).
+  classic-blue direction we kept as an alternate).
 
 ---
 
 ## Layout & rhythm
 
-- **Measure:** content column is `max-w-180` (720px), centered, with `px-7`
-  (28px) gutters. Reading prose stays narrower via the typography plugin.
+- **Measure:** the page shell is `max-w-180` (720px), centered, with `px-7`
+  (28px) gutters. **Reading prose is kept to the ~65ch typographic measure**
+  (do _not_ apply `max-w-none` to `Prose`) — long lines are the main thing that
+  makes serif text feel hard to read.
+- **Body text:** `1.0625rem` (17px) with `1.65` line-height. Set via
+  `prose-p`/`prose-li` modifiers in `Prose.astro`.
 - **Header:** brand left, nav right, baseline-aligned, generous space below
   (`pt-16 pb-12`). No rule under it.
 - **Footer:** monospace, muted, small.
@@ -103,7 +107,7 @@ site-wide.
 
 - **Switch body to sans:** `--font-body: var(--font-sans);`
 - **Switch accent to blue:** `--color-accent: #1d4ed8;`
-- **Cooler/whiter paper:** `--color-paper: #ffffff;` (and bump `--color-rule`
+- **Whiter paper:** `--color-paper: #ffffff;` (and bump `--color-rule`
   toward `#ececec`).
 - **Use a token in markup:** `class="text-accent"`, `class="bg-code-bg"`,
   `class="font-mono text-muted"`, etc.

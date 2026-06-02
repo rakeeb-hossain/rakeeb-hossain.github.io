@@ -16,14 +16,14 @@
    */
   --font-body: var(--font-serif);
 
-  /* Palette — "warm paper, clay accent" (lab set 3, V3). */
-  --color-paper: #faf9f7;
-  --color-ink: #1c1b19;
-  --color-muted: #6b6862;
-  --color-rule: #e6e3dd;
-  --color-code-bg: #f1efea;
-  /* Signature accent. Swap to #1d4ed8 for the classic-blue direction (V2). */
-  --color-accent: #b5482b;
+  /* Palette — "cool paper, deep maroon" (lab N6). */
+  --color-paper: #f5f6f8;
+  --color-ink: #16181d;
+  --color-muted: #656b76;
+  --color-rule: #e3e6ea;
+  --color-code-bg: #eceef1;
+  /* Signature accent. Swap to #1d4ed8 for the classic-blue direction. */
+  --color-accent: #7f1d1d;
 }
 
 html {
