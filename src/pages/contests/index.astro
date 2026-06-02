@@ -1,0 +1,247 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title={"Contests"}>
+  <div class="not-prose">
+    <h1 class="text-3xl font-bold tracking-tight mb-1">Contests</h1>
+    <p id="contests-meta" class="text-sm text-gray-600 mb-10">
+      Upcoming and recent rounds on Codeforces and AtCoder.
+    </p>
+
+    <div id="contests-root" class="grid gap-12 md:grid-cols-2">
+      <p id="contests-status" class="text-gray-500 md:col-span-2">
+        Loading contests…
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import type { Contest, ContestsPayload, Judge } from "../../lib/contests";
+
+  const JUDGES: ReadonlyArray<{ id: Judge; label: string; href: string }> = [
+    { id: "codeforces", label: "Codeforces", href: "https://codeforces.com" },
+    { id: "atcoder", label: "AtCoder", href: "https://atcoder.jp/home" },
+  ];
+
+  const absoluteFmt = new Intl.DateTimeFormat(undefined, {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
+  });
+  const relativeFmt = new Intl.RelativeTimeFormat(undefined, {
+    numeric: "auto",
+  });
+
+  const MINUTE = 60_000;
+  const HOUR = 60 * MINUTE;
+  const DAY = 24 * HOUR;
+  const WEEK = 7 * DAY;
+
+  function el<K extends keyof HTMLElementTagNameMap>(
+    tag: K,
+    className?: string,
+    text?: string,
+  ): HTMLElementTagNameMap[K] {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function formatRelative(targetMs: number, now: number): string {
+    const diff = targetMs - now;
+    const abs = Math.abs(diff);
+    if (abs < HOUR)
+      return relativeFmt.format(Math.round(diff / MINUTE), "minute");
+    if (abs < DAY) return relativeFmt.format(Math.round(diff / HOUR), "hour");
+    if (abs < WEEK) return relativeFmt.format(Math.round(diff / DAY), "day");
+    return relativeFmt.format(Math.round(diff / WEEK), "week");
+  }
+
+  function formatDuration(seconds: number | null): string {
+    if (seconds === null || seconds <= 0) return "";
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.round((seconds % 3600) / 60);
+    if (hours && minutes) return `${hours}h ${minutes}m`;
+    if (hours) return `${hours}h`;
+    return `${minutes}m`;
+  }
+
+  function contestEndMs(contest: Contest): number {
+    return contest.startMs + (contest.durationSeconds ?? 0) * 1000;
+  }
+
+  function renderContestRow(contest: Contest, now: number): HTMLElement {
+    const isLive = contest.startMs <= now && now < contestEndMs(contest);
+
+    const row = el("a", "group block py-2");
+    row.href = contest.url;
+    row.target = "_blank";
+    row.rel = "noopener noreferrer";
+
+    const top = el("div", "flex items-baseline justify-between gap-3");
+    const name = el(
+      "span",
+      "font-medium text-black group-hover:underline underline-offset-2",
+      contest.name,
+    );
+    top.appendChild(name);
+
+    const duration = formatDuration(contest.durationSeconds);
+    if (duration) {
+      top.appendChild(
+        el("span", "shrink-0 text-xs text-gray-500 tabular-nums", duration),
+      );
+    }
+    row.appendChild(top);
+
+    const meta = el("div", "mt-0.5 text-sm text-gray-600");
+    if (isLive) {
+      const badge = el(
+        "span",
+        "mr-2 inline-block rounded bg-red-600 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white align-middle",
+        "Live",
+      );
+      meta.appendChild(badge);
+    }
+    meta.appendChild(
+      document.createTextNode(
+        `${absoluteFmt.format(contest.startMs)} · ${formatRelative(
+          contest.startMs,
+          now,
+        )}`,
+      ),
+    );
+    row.appendChild(meta);
+
+    return row;
+  }
+
+  function renderList(
+    title: string,
+    contests: Contest[],
+    now: number,
+    emptyText: string,
+  ): HTMLElement {
+    const section = el("div");
+    section.appendChild(
+      el(
+        "h3",
+        "mb-1 text-xs font-semibold uppercase tracking-wider text-gray-400",
+        title,
+      ),
+    );
+
+    if (contests.length === 0) {
+      section.appendChild(el("p", "text-sm text-gray-400", emptyText));
+      return section;
+    }
+
+    const list = el("div", "divide-y divide-gray-100");
+    for (const contest of contests) {
+      list.appendChild(renderContestRow(contest, now));
+    }
+    section.appendChild(list);
+    return section;
+  }
+
+  function renderJudge(
+    config: { id: Judge; label: string; href: string },
+    contests: Contest[],
+    error: string | undefined,
+    now: number,
+  ): HTMLElement {
+    const section = el("section");
+
+    const header = el("div", "mb-4 flex items-center justify-between");
+    header.appendChild(el("h2", "text-xl font-semibold", config.label));
+    const link = el("a", "text-sm text-blue-600 hover:underline", "Visit ↗");
+    link.href = config.href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    header.appendChild(link);
+    section.appendChild(header);
+
+    if (error) {
+      section.appendChild(
+        el(
+          "p",
+          "rounded border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700",
+          `Couldn't load ${config.label}: ${error}`,
+        ),
+      );
+      return section;
+    }
+
+    const upcoming = contests
+      .filter((c) => now < contestEndMs(c))
+      .sort((a, b) => a.startMs - b.startMs);
+    const recent = contests
+      .filter((c) => now >= contestEndMs(c))
+      .sort((a, b) => b.startMs - a.startMs);
+
+    const groups = el("div", "space-y-6");
+    groups.appendChild(
+      renderList("Upcoming", upcoming, now, "No upcoming contests."),
+    );
+    groups.appendChild(
+      renderList("Recent", recent, now, "No recent contests."),
+    );
+    section.appendChild(groups);
+
+    return section;
+  }
+
+  function setMeta(fetchedAtMs: number): void {
+    const meta = document.getElementById("contests-meta");
+    if (!meta) return;
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const updated = new Intl.DateTimeFormat(undefined, {
+      hour: "numeric",
+      minute: "2-digit",
+    }).format(fetchedAtMs);
+    meta.textContent = `Upcoming and recent rounds on Codeforces and AtCoder. Times in ${tz} · updated ${updated}.`;
+  }
+
+  function render(payload: ContestsPayload): void {
+    const root = document.getElementById("contests-root");
+    if (!root) return;
+    const now = Date.now();
+
+    root.replaceChildren();
+    for (const config of JUDGES) {
+      const contests =
+        config.id === "codeforces" ? payload.codeforces : payload.atcoder;
+      root.appendChild(
+        renderJudge(config, contests, payload.errors[config.id], now),
+      );
+    }
+    setMeta(payload.fetchedAtMs);
+  }
+
+  function showError(): void {
+    const status = document.getElementById("contests-status");
+    if (status) {
+      status.textContent =
+        "Couldn't load contests right now. Please try again later.";
+    }
+  }
+
+  async function load(): Promise<void> {
+    try {
+      const response = await fetch("/api/contests");
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+      const payload = (await response.json()) as ContestsPayload;
+      render(payload);
+    } catch {
+      showError();
+    }
+  }
+
+  void load();
+</script>

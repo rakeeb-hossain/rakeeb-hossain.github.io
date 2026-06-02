@@ -19,9 +19,12 @@ const title = explicitTitle ?? frontmatter?.title;
   <body class="bg-white flex flex-col min-h-screen">
     <header class="container mx-auto max-w-[768px] px-4 py-16">
       <div class="flex justify-between items-center">
-        <a href="/" class="text-2xl font-bold">Append-Only<span class="cursor font-light">_</span></a>
+        <a href="/" class="text-2xl font-bold"
+          >Append-Only<span class="cursor font-light">_</span></a
+        >
         <nav class="space-x-6">
           <a href="/articles" class="hover:opacity-60 transition"> Articles </a>
+          <a href="/contests" class="hover:opacity-60 transition"> Contests </a>
           <a href="/about" class="hover:opacity-60 transition"> About </a>
         </nav>
       </div>
@@ -49,9 +52,10 @@ const title = explicitTitle ?? frontmatter?.title;
     display: inline-block;
     animation: blink 1s step-end infinite;
   }
-  
+
   @keyframes blink {
-    from, to {
+    from,
+    to {
       opacity: 1;
     }
     50% {

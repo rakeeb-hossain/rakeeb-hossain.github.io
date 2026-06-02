@@ -1,14 +1,16 @@
 // @ts-check
-import { defineConfig } from "astro/config";
-
-import tailwindcss from "@tailwindcss/vite";
 
 import mdx from "@astrojs/mdx";
-import remarkMath from "remark-math";
+import vercel from "@astrojs/vercel";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
 import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 // https://astro.build/config
 export default defineConfig({
+  adapter: vercel(),
+
   vite: {
     plugins: [tailwindcss()],
   },

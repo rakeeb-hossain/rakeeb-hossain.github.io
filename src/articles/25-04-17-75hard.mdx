@@ -3,22 +3,23 @@ layout: ../layouts/ArticleLayout.astro
 title: 75 Hard - Founder Edition
 date: 2025-04-17
 ---
-import { Image } from 'astro:assets';
-import Day1Image from '../assets/IMG_2579.jpg';
+
+import { Image } from "astro:assets";
+import Day1Image from "../assets/IMG_2579.jpg";
 
 About a year and a half ago, I quit my dream new-grad job to found a startup with
 a friend. Since then, it's been quite a tumultuous journey involving
-reverse-engineering bank APIs, sneaking into conferences, several 
-different pivots, and quite a lot of existential dread. Today, we're 
-again mid-pivot. Being pre-PMF (product-market fit) for this long wears at your 
-motivation and we're eager to make something work. 
+reverse-engineering bank APIs, sneaking into conferences, several
+different pivots, and quite a lot of existential dread. Today, we're
+again mid-pivot. Being pre-PMF (product-market fit) for this long wears at your
+motivation and we're eager to make something work.
 
-I've always loved challenges and pushing for unrealistic deadlines so, in 
+I've always loved challenges and pushing for unrealistic deadlines so, in
 that spirit, I've decided to do the 75 Hard challenge but with a twist –
 **we must hit $50k MRR by the end of it**. We work as hard and as long
-as it takes to achieve this. I'm also going to incorporate 
+as it takes to achieve this. I'm also going to incorporate
 some of the regular 75 Hard stuff (daily gym, good sleep hygiene, etc.)
-but that's mostly uninteresting and won't report much on that. My version of 
+but that's mostly uninteresting and won't report much on that. My version of
 "posting a picture everyday" will be writing an entry everyday here.
 
 Let's go!
@@ -27,114 +28,118 @@ Let's go!
 
 Thursday, April 17th, 2025
 
-Did a planning session with David this morning. Summary: 
-- All ideas from here on out will prioritize being (1) quick to validate 
-and (2) quick to GTM (i.e. build and sell)
-- We have to sell to small-to-mid-sized companies to hit the MRR goal. There isn't
-a chance we can make it through an enterprise sales cycle in this timeframe
-- We should focus on ideas that we have an edge in. This involves knowing or intimately 
-knowing someone who knows the problem space well. The challenge is too short to
-be in "exploration" mode for any extended period of time
-- Growth hacks will be our best friend here. Generating inbound rather than
-relying on outbound will move us towards the end-zone way faster
+Did a planning session with David this morning. Summary:
 
-Tied up some loose project threads I was working on prior as well so I now have 
-a clean slate. 
+- All ideas from here on out will prioritize being (1) quick to validate
+  and (2) quick to GTM (i.e. build and sell)
+- We have to sell to small-to-mid-sized companies to hit the MRR goal. There isn't
+  a chance we can make it through an enterprise sales cycle in this timeframe
+- We should focus on ideas that we have an edge in. This involves knowing or intimately
+  knowing someone who knows the problem space well. The challenge is too short to
+  be in "exploration" mode for any extended period of time
+- Growth hacks will be our best friend here. Generating inbound rather than
+  relying on outbound will move us towards the end-zone way faster
+
+Tied up some loose project threads I was working on prior as well so I now have
+a clean slate.
 
 Here are some rough spaces we're considering going down:
-- Audio AI: I've been working on converting an old ebook into an audiobook
-using character voices from the show. Is this productizable? 
-I've also fine-tuned nearly every open-source TTS model claiming SOTA.
-Is there some niche audio task we can solve quickly?
-- Tariffs: huge shift right now, could be value to capture here. David is going deep into 
-this one. Can we help exporters do the compliance/paperwork necessary amidst the 
-turbulent tariff situation? Need to talk to companies dealing with export between US and Canada. 
-- Cash management/visibility: our last idea was in treasury. After talking to the former 
-treasurer of a large cap public company, it's clear that the bank account situation of any mid-to-large-sized company is complex. 
-With fragmentation of open-banking regulations, treasurers have teams of people
-*just tracking balanaces and fees of bank accounts globally*. After reverse-engineering 
-bank APIs, I think we might have a solution here... we will tap our treasury network
-to validate this quickly.
-- Cybersecurity and LLMs: reverse-engineering involves a lot of pattern recognition
-and I've been approached a decent amount with projects here, some offering $$$.
-Can LLMs be trained/prompted to be good at it? Can I get LLMs to solve CTFs reliably? 
-If so, I think we're onto something. Can we build a pentesting agent? 
-- Anti-piracy automation: I had this idea many years ago to automate DMCA takedown notices 
-after one of my Patreon subs kept complaining about it
 
-I'm currently most optimistic about cybersecurity and anti-piracy automation. Tariff 
+- Audio AI: I've been working on converting an old ebook into an audiobook
+  using character voices from the show. Is this productizable?
+  I've also fine-tuned nearly every open-source TTS model claiming SOTA.
+  Is there some niche audio task we can solve quickly?
+- Tariffs: huge shift right now, could be value to capture here. David is going deep into
+  this one. Can we help exporters do the compliance/paperwork necessary amidst the
+  turbulent tariff situation? Need to talk to companies dealing with export between US and Canada.
+- Cash management/visibility: our last idea was in treasury. After talking to the former
+  treasurer of a large cap public company, it's clear that the bank account situation of any mid-to-large-sized company is complex.
+  With fragmentation of open-banking regulations, treasurers have teams of people
+  _just tracking balanaces and fees of bank accounts globally_. After reverse-engineering
+  bank APIs, I think we might have a solution here... we will tap our treasury network
+  to validate this quickly.
+- Cybersecurity and LLMs: reverse-engineering involves a lot of pattern recognition
+  and I've been approached a decent amount with projects here, some offering $$$.
+  Can LLMs be trained/prompted to be good at it? Can I get LLMs to solve CTFs reliably?
+  If so, I think we're onto something. Can we build a pentesting agent?
+- Anti-piracy automation: I had this idea many years ago to automate DMCA takedown notices
+  after one of my Patreon subs kept complaining about it
+
+I'm currently most optimistic about cybersecurity and anti-piracy automation. Tariff
 stuff is cool too but not sure if we have any edge here, neither of us having much direct
 experience. Will continue to tap the network on this, though.
 
 Plan for tomorrow:
+
 - Research cybersecurity and LLMs
 - Research DMCA takedown notice stuff
 - Tap network for more tariff ideas
 - See if we can eval LLMs on a set of CTF problems
 
-<Image src={Day1Image} alt="SF skyline" width={400}/>
+<Image src={Day1Image} alt="SF skyline" width={400} />
 Sunset from the office
 
 ## Day 2
 
 Friday, April 18th, 2025
 
-Got a message from a friend at a startup asking for help 
-reverse-engineering something. They would be willing to pay 
-so this is a perfect time to try the whole LLM security angle. 
-This is more app security than cloud security but still great to explore. 
-Spent the entire day on this and it's still a WIP. Going to spend 
+Got a message from a friend at a startup asking for help
+reverse-engineering something. They would be willing to pay
+so this is a perfect time to try the whole LLM security angle.
+This is more app security than cloud security but still great to explore.
+Spent the entire day on this and it's still a WIP. Going to spend
 tomorrow as well on this and, if no luck, going to scrap. I can't
 get pigeon-holed into a direction that is unlikely to pan for too long.
 
 I also decided to scrap the audio AI direction. After some more thought,
 most of my ideas come from thinking about building a cheaper/open-source version
 of existing commercial services. This is great for open-source, less so for
-building a business. I believe more value is to be built in applications of 
-audio AI but I have no immediate ideas I'm excited about here. Also have 
+building a business. I believe more value is to be built in applications of
+audio AI but I have no immediate ideas I'm excited about here. Also have
 some rough ideas around helping companies fine-tune agents and build reward models,
 but that's very hazy – will table this direction for later.
 
-Going to be heads down until tomorrow on app security stuff and come up for 
-air after. Will revisit CTFs and anti-piracy/brand protection stuff after and 
+Going to be heads down until tomorrow on app security stuff and come up for
+air after. Will revisit CTFs and anti-piracy/brand protection stuff after and
 David will continue on the tariffs and treasury threads.
 
-Biggest worry right now is that all of our current threads will take too long to 
+Biggest worry right now is that all of our current threads will take too long to
 validate/build/start selling. Need to tap into things we have a network in.
 
 ## Day 3
 
 Saturday, April 19th, 2025
 
-Worked on the reverse-engineering job today with agents. While I think agents 
-(esp. Claude Code) are amazing at pattern-matching and treating as oracles for 
-obfuscated codebases, it seems quite hard to have a trully autonomous AppSec 
-pentesting agent. I needed to guide Claude quite a bit and it seemed to struggle 
-with Smali code. It also doesn't have a nice way to work with Ghidra or IDA Pro. 
+Worked on the reverse-engineering job today with agents. While I think agents
+(esp. Claude Code) are amazing at pattern-matching and treating as oracles for
+obfuscated codebases, it seems quite hard to have a trully autonomous AppSec
+pentesting agent. I needed to guide Claude quite a bit and it seemed to struggle
+with Smali code. It also doesn't have a nice way to work with Ghidra or IDA Pro.
 That being said, it definitely sped me up and perhaps there is a tighter set of integrations
 and a knowledge-base you can provide to make it really good.
 
-All that being said, I realize that this sort of work feels more like 
-"research". While I really enjoy research and open-ended work, we have a goal 
-for these 75 days and the only way to hit the MRR target is to, as PG says, build something 
-people want. In our case, this means either building something *we know* people want
-or we can *quickly validate if people want* or not.
+All that being said, I realize that this sort of work feels more like
+"research". While I really enjoy research and open-ended work, we have a goal
+for these 75 days and the only way to hit the MRR target is to, as PG says, build something
+people want. In our case, this means either building something _we know_ people want
+or we can _quickly validate if people want_ or not.
 
 We have quite a few friends building startups, several of them doing very well.
-Perhaps we should lean more into solving their problems? For example, friend 
-I was reverse-engineering for explained that there weren't any good browser 
-orchestration products for cleanly doing stuff like manually authenticating sessions, 
+Perhaps we should lean more into solving their problems? For example, friend
+I was reverse-engineering for explained that there weren't any good browser
+orchestration products for cleanly doing stuff like manually authenticating sessions,
 including Browserbase. This is an acute problem for them! I want to think about this more tomorrow.
 
 Many of our ideas we don't directly have a network in so we have to have several
-open-ended exploratory conversations before we can really judge the direction as 
-fruitful or not. Perhaps we should just launch more? A well-executed launch 
-creates a ton of inbound and quick feedback. Bookface is great and low-stakes. 
+open-ended exploratory conversations before we can really judge the direction as
+fruitful or not. Perhaps we should just launch more? A well-executed launch
+creates a ton of inbound and quick feedback. Bookface is great and low-stakes.
 
 Sundays are good for thinking so plan is:
+
 - Explore CTF agents
 - Can we quickly create a pre-launch/waitlist for the DMCA takedown notice idea?
-Are there any other lines we can cast concurrently?
+  Are there any other lines we can cast concurrently?
 - Explore Browserbase and the device/browser farm maintenance problem
 - Explore tariff ideas
 
@@ -145,28 +150,28 @@ Sunday, April 20th, 2025
 I mostly took today off but some notes from David:
 
 Helping faciliate global commerce is an under-invested and very valuable area.
-David is from Ireland. Ireland, being a small country, has always had to rely 
-on global trade. The story of their economic success has been one of attracting 
-FDI and supporting exports of Irish goods abroad. From speaking to treasurers 
-and from direct experience, we're aware of some of the financial, tax, legal, compliance, 
-and operational complexities of selling abroad. 
+David is from Ireland. Ireland, being a small country, has always had to rely
+on global trade. The story of their economic success has been one of attracting
+FDI and supporting exports of Irish goods abroad. From speaking to treasurers
+and from direct experience, we're aware of some of the financial, tax, legal, compliance,
+and operational complexities of selling abroad.
 Stablecoins (for global payments) and LLMs (for automating back-office complexity)
 have the potential to alleviate global commerce pains.
-Can we make this easier in some pointed way that can give us traction quickly? 
+Can we make this easier in some pointed way that can give us traction quickly?
 
 A similar company in the space is a YC startup that is essentially "East Asia"-in-a-box.
-They handle IP/trademark filings, legal enforcements of IP, and counterfeit monitoring. 
-Very cool business and they seem to be doing quite well. 
+They handle IP/trademark filings, legal enforcements of IP, and counterfeit monitoring.
+Very cool business and they seem to be doing quite well.
 
-Why now? Tariffs have companies looking into foreign sales with more scrutiny 
-and many will likely be looking to cut costs. The global trade system is also 
-undergoing a massive restructuring unlike anything we have seen over the last 
+Why now? Tariffs have companies looking into foreign sales with more scrutiny
+and many will likely be looking to cut costs. The global trade system is also
+undergoing a massive restructuring unlike anything we have seen over the last
 30 years — since the signing of NAFTA and the expansion of the WTO in the early 1990s
 
-There is clearly a lot of value that can be created in this space. 
-But, with any idea, we must first solve a very acute, specific, high-pain-point 
-scenario that provides immediate value. We need to tap our network or mine for 
-contacts that can work closely and casually with us. This is the only way we 
+There is clearly a lot of value that can be created in this space.
+But, with any idea, we must first solve a very acute, specific, high-pain-point
+scenario that provides immediate value. We need to tap our network or mine for
+contacts that can work closely and casually with us. This is the only way we
 can hit our $50k MRR target.
 
 Continuing with tariff and CTF direction tomorrow.
@@ -175,59 +180,61 @@ Continuing with tariff and CTF direction tomorrow.
 
 Monday, April 21st, 2025
 
-Went deeper into CTFs and AI agents for red-teaming today. Quite bullish that 
-there is a valuable company to be created here and that a simple AI agent 
-wrapping Claude Sonnet and with retrieval over well-known vulnerabilities/attack 
+Went deeper into CTFs and AI agents for red-teaming today. Quite bullish that
+there is a valuable company to be created here and that a simple AI agent
+wrapping Claude Sonnet and with retrieval over well-known vulnerabilities/attack
 patterns and tool-use over common security tools can probably solve a good chunk
-of CTFs. This might be our MVP. 
+of CTFs. This might be our MVP.
 
-Thought, we might be out of our depth here. I did reverse-engineer quite a bit of app 
-and web code but network security is a whole different ball game. There are really 
-technically strong teams working on this stuff like XBOW and Theori. That isn't a 
-deterrant but rather gives me pause to think if we're the right team to build this. 
-This is founder-market fit and something you hear a lot about in startup circles. 
-It's not just my expertise but the *intersection* of my expertise with my co-founder's. 
+Thought, we might be out of our depth here. I did reverse-engineer quite a bit of app
+and web code but network security is a whole different ball game. There are really
+technically strong teams working on this stuff like XBOW and Theori. That isn't a
+deterrant but rather gives me pause to think if we're the right team to build this.
+This is founder-market fit and something you hear a lot about in startup circles.
+It's not just my expertise but the _intersection_ of my expertise with my co-founder's.
 
-Something exciting: RSA Conference (massive cybersecurity conference) is 
-in SF starting next Monday. If we build and launch something this week, we can 
+Something exciting: RSA Conference (massive cybersecurity conference) is
+in SF starting next Monday. If we build and launch something this week, we can
 go hard on selling there. The question is what do we build that we can narrowly
-execute on in time and what do we have a unique insight in. 
+execute on in time and what do we have a unique insight in.
 
 Some ideas:
-- Cursor/Claude Code/Windsurf for pen-testers. It's like having a really smart 
-security engineer intern. No need to remind it that you're doing security work so
-it shouldn't sensor. Capable of writing scripts, generating CTF-like attacks, 
-and providing info on vulnerabilities. Has context on attacks you've tried so far.
-Can ingest several common security formats natively (not sure what). 
-Built-in integrations with oss-fuzz-gen, proxy services, etc.
-Proofpoint would be CTF benchmarks and a nifty working demo.
+
+- Cursor/Claude Code/Windsurf for pen-testers. It's like having a really smart
+  security engineer intern. No need to remind it that you're doing security work so
+  it shouldn't sensor. Capable of writing scripts, generating CTF-like attacks,
+  and providing info on vulnerabilities. Has context on attacks you've tried so far.
+  Can ingest several common security formats natively (not sure what).
+  Built-in integrations with oss-fuzz-gen, proxy services, etc.
+  Proofpoint would be CTF benchmarks and a nifty working demo.
 - Keep track of new vulnerabilities, bug bounty reports, etc. with a simple Slackbot integration. It summarizes
-reports from the various sources. This is stupid easy to build.
-- Single URL attack surface monitor. You give us a domain, our agent crawls 
-with amass, nmap, ffuf, subfinder. Summarize with a nice report on exposure. 
-Can provide additional information to simulate a knowledgeable attacker, 
-such as login credentials. 
-Great for bug bounty hunters, red-teamers, and reverse-engineers.
-- Code deobfuscation for app security. License check bypasses and cracking local 
-software are insanely common. Use this to test against common tooling. 
+  reports from the various sources. This is stupid easy to build.
+- Single URL attack surface monitor. You give us a domain, our agent crawls
+  with amass, nmap, ffuf, subfinder. Summarize with a nice report on exposure.
+  Can provide additional information to simulate a knowledgeable attacker,
+  such as login credentials.
+  Great for bug bounty hunters, red-teamers, and reverse-engineers.
+- Code deobfuscation for app security. License check bypasses and cracking local
+  software are insanely common. Use this to test against common tooling.
 
 Tomorrow:
-- Meeting with YC batchmate who hired a security consultant and pentester to get 
-an understanding of how the arrangement works (white-box, black-box, etc.)
+
+- Meeting with YC batchmate who hired a security consultant and pentester to get
+  an understanding of how the arrangement works (white-box, black-box, etc.)
 - Get building on one of the security ideas for RSAC
 
 ## Day 6
 
 Tuesday, April 22nd, 2025
 
-Heads down on reverse-engineer AI agent for RSAC. David is sick so the non-cybersecurity 
-threads will continue later. 
+Heads down on reverse-engineer AI agent for RSAC. David is sick so the non-cybersecurity
+threads will continue later.
 
-Trying to figure out what is a good deliverable/demo for the conference. Right now, the 
+Trying to figure out what is a good deliverable/demo for the conference. Right now, the
 best idea I have is "give us a URL, we'll build map your API and find vulnerabilities".
 This will involve fuzzing for common URL patterns, reading obfuscated JS, and backend
 API recon. For red-teaming, this should be as discrete as possible, so rate-limit awareness
-has to be builtin. At the end, a simple generated report would be nice. The interface 
+has to be builtin. At the end, a simple generated report would be nice. The interface
 for this will be a CLI app, similar to Claude Code.
 
 Still a lot to think about here, will continue scoping and building out tomorrow.
@@ -236,53 +243,53 @@ Still a lot to think about here, will continue scoping and building out tomorrow
 
 Wednesday, April 23rd, 2025
 
-Another day of heads-down building. I think if we do this right, 
-we can get a great demo out of this and build a pretty damn useful product. 
+Another day of heads-down building. I think if we do this right,
+we can get a great demo out of this and build a pretty damn useful product.
 
 I saw some fellow young founders launch products that have gotten quite a bit of buzz and
-traction. This got me thinking about the different playbooks for GTM and validation for 
-different types of founders. For founders with more experience (often older), they probably already 
-have a semi-validated idea by experiencing it themselves so the playbook will likely 
+traction. This got me thinking about the different playbooks for GTM and validation for
+different types of founders. For founders with more experience (often older), they probably already
+have a semi-validated idea by experiencing it themselves so the playbook will likely
 involve selling into their own network. This lends itself to a slower, but more sustainable growth
-model. Younger founders lack experience and are often naive but make up for it in understanding 
-how to grab attention. Younger founders are often able to launch loudly and more publicly, 
-such as through a buzzy Twitter post or a relatable TikTok-style "follow my life" series. 
-In other words, younger founders are more in-tune with content creation and can use this to 
-their advantage to generate buzz. This can get ideas validated quickly and build traction. Churn 
-will likely be high. They then have to grapple with how to turn this into sustainable growth. 
+model. Younger founders lack experience and are often naive but make up for it in understanding
+how to grab attention. Younger founders are often able to launch loudly and more publicly,
+such as through a buzzy Twitter post or a relatable TikTok-style "follow my life" series.
+In other words, younger founders are more in-tune with content creation and can use this to
+their advantage to generate buzz. This can get ideas validated quickly and build traction. Churn
+will likely be high. They then have to grapple with how to turn this into sustainable growth.
 
-Almost without fail, every fellow young founder I've seen succeed follows some variation of this 
-playbook. I'd argue that the ones that don't are playing a losing game – one which older founders 
-dominate due to superior experience and networks. 
+Almost without fail, every fellow young founder I've seen succeed follows some variation of this
+playbook. I'd argue that the ones that don't are playing a losing game – one which older founders
+dominate due to superior experience and networks.
 
-I think we've fallen into that category: young founders who try to approach starting startups 
-with a more careful and thesis-based approach (i.e. thinking about what we think the world will be 
+I think we've fallen into that category: young founders who try to approach starting startups
+with a more careful and thesis-based approach (i.e. thinking about what we think the world will be
 like in 5 years). It feels closer to how Peter Thiel describes coming up with Palantir.
-However, we're too inexperienced for this and lack the network. To hit the 75 Hard target we need to 
-swing in the other direction, launch loudly and quickly, and trust ourselves to shape early traction 
-into something we're long-term excited about. 
+However, we're too inexperienced for this and lack the network. To hit the 75 Hard target we need to
+swing in the other direction, launch loudly and quickly, and trust ourselves to shape early traction
+into something we're long-term excited about.
 
 ## Day 8
 
 Thursday, April 24th, 2025
 
-Not much to report on today. Another day of building. Things seem to be coming 
-together quite quickly. Finished all the tool implementations and will 
+Not much to report on today. Another day of building. Things seem to be coming
+together quite quickly. Finished all the tool implementations and will
 work on accuracy and tweaking system prompts for a few E2E evals tomorrow.
 
 ## Day 9
 
 Friday, April 25th, 2025
 
-Evals are not performing that well. I think the context window is getting 
-blown up by HTML/JS source code. I need to use chunking and RAG to only 
-pass relevant context to the LLM. Input selection is also not working well 
-in the browser – I think a rendered markdown view that stores references to 
-the original HTML could compress things and make inputs work better. 
+Evals are not performing that well. I think the context window is getting
+blown up by HTML/JS source code. I need to use chunking and RAG to only
+pass relevant context to the LLM. Input selection is also not working well
+in the browser – I think a rendered markdown view that stores references to
+the original HTML could compress things and make inputs work better.
 Also wondering if I should look into MemGPT.
 
-Side note: async Python is a complete pain. Cancellation is really difficult 
-without it being enforced at the language level. Really makes me appreciate 
+Side note: async Python is a complete pain. Cancellation is really difficult
+without it being enforced at the language level. Really makes me appreciate
 Go context and its stdlib.
 
 ## Day 10 & 11
@@ -291,20 +298,20 @@ Saturday, April 26th, 2025 / Sunday, April 27th, 2025
 
 David is going to take over on updates for the next week or two:
 
-We realized this weekend that we've been spreading ourselves way too thin 
-over these first ten days. We need to focus on one big thing. Too much 
-experimentation wrecks your head, and it feels like we've been trying to 
+We realized this weekend that we've been spreading ourselves way too thin
+over these first ten days. We need to focus on one big thing. Too much
+experimentation wrecks your head, and it feels like we've been trying to
 run six different startups at once.
 
-We visited one of our startup friends at their office and had a really 
-helpful conversation with Rakeeb's roommate (another founder). He 
-recommended we go all-in on a general area where we have a unique edge: 
-good advice, and much needed. Pretty quickly, we realized this was 
-stablecoins for us – we've been working on stablecoin and instant 
-payment ideas since the very beginning of the company (most recently on 
-stablecoin repatriation for treasury teams, which we traveled to the 
-conference in London for). We've built up a lot of knowledge and contacts 
-here (and this compounds over time), so we think this stablecoin direction 
+We visited one of our startup friends at their office and had a really
+helpful conversation with Rakeeb's roommate (another founder). He
+recommended we go all-in on a general area where we have a unique edge:
+good advice, and much needed. Pretty quickly, we realized this was
+stablecoins for us – we've been working on stablecoin and instant
+payment ideas since the very beginning of the company (most recently on
+stablecoin repatriation for treasury teams, which we traveled to the
+conference in London for). We've built up a lot of knowledge and contacts
+here (and this compounds over time), so we think this stablecoin direction
 will give us the best chance of success.
 
 This weekend was great to regroup. Let's do this.
@@ -313,12 +320,13 @@ This weekend was great to regroup. Let's do this.
 
 Monday, April 28th, 2025
 
-The positioning we've come up with is "Cash Out from Emerging Markets 
-to USD". Some companies will describe this as repatriation (generally 
-larger, _with_ treasury teams), some won't (generally smaller, _without_ 
+The positioning we've come up with is "Cash Out from Emerging Markets
+to USD". Some companies will describe this as repatriation (generally
+larger, _with_ treasury teams), some won't (generally smaller, _without_
 treasury teams), but the product is functionally the same regardless.
 
 Here is a list of initial industries we plan to target:
+
 1. Travel / Hospitality (OTAs)
 2. Energy / Natural Resources
 3. Consumer Goods / Food & Bev
@@ -329,56 +337,56 @@ Importantly, we also want to target companies that:
 – Are small / mid-sized
 – Don’t have teams of lawyers + compliance officers
 – Don’t have in-house FX desks + strategies
-– Don’t know how to work with stablecoins themselves, but 
+– Don’t know how to work with stablecoins themselves, but
 are desperate for better solutions
 
-We're feeling confident in this positioning, and also by the 
-fact that this whole category doesn't exist yet, i.e., nobody 
+We're feeling confident in this positioning, and also by the
+fact that this whole category doesn't exist yet, i.e., nobody
 has won here. It's completely open season.
 
-Side note: We stumbled across a stablecoin conference in NYC 
-on May 29th called Stablecon, which we're considering going to 
+Side note: We stumbled across a stablecoin conference in NYC
+on May 29th called Stablecon, which we're considering going to
 (may or may not be useful for customer acquisition).
 
 ## Day 13
 
 Tuesday, April 29th, 2025
 
-We generally haven't spent much time thinking about consumer ideas, 
-but we had a tangential consumer idea today that we were both excited 
+We generally haven't spent much time thinking about consumer ideas,
+but we had a tangential consumer idea today that we were both excited
 about, so we figured it was worth a day doing initial recon on.
 
-The basic premise is that consumers outside the US want access not 
-only to the US dollar but also to _US yield_ (i.e., US Treasuries) 
-and _US markets_ (i.e., the S&P 500). We ourselves both wanted this, 
+The basic premise is that consumers outside the US want access not
+only to the US dollar but also to _US yield_ (i.e., US Treasuries)
+and _US markets_ (i.e., the S&P 500). We ourselves both wanted this,
 growing up in Ireland and Canada, respectively.
 
-Historically, this has not been easy. Accessing US bonds and US stocks 
-through international brokers generally either a) incurs very high fees, 
-or b) is not possible at all. We came across a startup called Ondo, 
-backed by Founders Fund, that seems to be the leader in tokenizing 
+Historically, this has not been easy. Accessing US bonds and US stocks
+through international brokers generally either a) incurs very high fees,
+or b) is not possible at all. We came across a startup called Ondo,
+backed by Founders Fund, that seems to be the leader in tokenizing
 real-world assets.
 
-We're considering building something with their USDY and Global Markets 
-products and currently wondering a) what's possible in terms of 
-eligibility/jurisdictions, and b) what the timeline is for beta + 
+We're considering building something with their USDY and Global Markets
+products and currently wondering a) what's possible in terms of
+eligibility/jurisdictions, and b) what the timeline is for beta +
 full Global Markets release.
 
 ## Day 14
 
 Wednesday, April 30th, 2025
 
-A friend at Founders Fund has agreed to introduce us to Ondo, so we're 
+A friend at Founders Fund has agreed to introduce us to Ondo, so we're
 excited to see what's possible there and set up a call with them.
 
-While we wait for that to play out, we're going to focus on the previous 
-thread around "Cash Out from Emerging Markets to USD". The infrastructure 
-we will need to pull together for both of these ideas has a lot of 
-overlap, so we're confident that our efforts will not be wasted, no 
+While we wait for that to play out, we're going to focus on the previous
+thread around "Cash Out from Emerging Markets to USD". The infrastructure
+we will need to pull together for both of these ideas has a lot of
+overlap, so we're confident that our efforts will not be wasted, no
 matter which one we end up building.
 
-Relatedly, we also have a direct in to Jackie Reses, Co-Founder, CEO & 
-Chair of Lead Bank (one of the leading fintech and crypto banks). This 
+Relatedly, we also have a direct in to Jackie Reses, Co-Founder, CEO &
+Chair of Lead Bank (one of the leading fintech and crypto banks). This
 may be a useful string to pull on for anything we need on the fiat side.
 
 ## Day 15
@@ -397,8 +405,8 @@ Placeholder.
 
 Saturday, May 3rd, 2025 / Sunday, May 4th, 2025
 
-Mostly did some spring-cleaning over the Go backend codebase 
-from previous iterations. Also worked on wiring up Teller into 
-a demo frontend for the offramp product. 
-Getting things ready to implement for once we have the Bridge/stablecoin 
+Mostly did some spring-cleaning over the Go backend codebase
+from previous iterations. Also worked on wiring up Teller into
+a demo frontend for the offramp product.
+Getting things ready to implement for once we have the Bridge/stablecoin
 redemption API working and the RTP provider once again solidified.

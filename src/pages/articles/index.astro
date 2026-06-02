@@ -1,9 +1,12 @@
 ---
+import { type CollectionEntry, getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
 
 export function titleToSlug(title: string) {
-  return title.toLowerCase().replace(/ /g, "-").replace(/[^a-z0-9-]/g, "");
+  return title
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^a-z0-9-]/g, "");
 }
 
 // Get all articles from the collection
