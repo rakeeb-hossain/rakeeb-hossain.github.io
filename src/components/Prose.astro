@@ -1,7 +1,14 @@
 <div
-  class="prose prose-p:text-black
-   prose-a:text-blue-600 prose-a:underline underline-offset-2 prose-a:transition prose-a:hover:text-blue-800
-   prose-p:leading-6"
+  class="prose max-w-none
+   prose-headings:text-ink prose-headings:font-semibold prose-headings:tracking-[-0.01em]
+   prose-p:text-ink prose-p:leading-[1.7]
+   prose-li:text-ink prose-strong:text-ink
+   prose-a:text-accent prose-a:underline prose-a:underline-offset-2 prose-a:decoration-1 prose-a:transition hover:prose-a:opacity-70
+   prose-code:font-mono prose-code:text-[0.85em] prose-code:font-normal prose-code:bg-code-bg prose-code:rounded prose-code:px-1.25 prose-code:py-px
+   prose-code:before:content-none prose-code:after:content-none
+   prose-pre:bg-code-bg prose-pre:text-ink prose-pre:rounded-lg
+   prose-blockquote:text-muted prose-blockquote:border-rule
+   prose-hr:border-rule"
 >
   <slot />
 </div>

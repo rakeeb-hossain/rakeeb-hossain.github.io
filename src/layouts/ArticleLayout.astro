@@ -5,8 +5,8 @@ const frontmatter = Astro.props.frontmatter;
 ---
 
 <Layout title={frontmatter.title}>
-  <h1 class="prose-h1">{frontmatter.title}</h1>
-  <div class="text-gray-600 mt-2 mb-8">
+  <h1>{frontmatter.title}</h1>
+  <div class="not-prose font-mono text-[12.5px] text-muted -mt-2 mb-10">
     {
       new Date(frontmatter.date).toLocaleDateString("en-US", {
         year: "numeric",

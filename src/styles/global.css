@@ -1,10 +1,39 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
-html {
-  font-family:
+@theme {
+  /* Typeface palette. Each entry is also exposed as a `font-*` utility. */
+  --font-serif:
+    "Iowan Old Style", "Charter", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /*
+   * Active body face. Swap this single reference to change the whole site's
+   * reading typeface (e.g. `var(--font-sans)` for the Inter/sans direction).
+   */
+  --font-body: var(--font-serif);
+
+  /* Palette — "warm paper, clay accent" (lab set 3, V3). */
+  --color-paper: #faf9f7;
+  --color-ink: #1c1b19;
+  --color-muted: #6b6862;
+  --color-rule: #e6e3dd;
+  --color-code-bg: #f1efea;
+  /* Signature accent. Swap to #1d4ed8 for the classic-blue direction (V2). */
+  --color-accent: #b5482b;
+}
+
+html {
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  }
 }

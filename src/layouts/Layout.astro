@@ -16,33 +16,30 @@ const title = explicitTitle ?? frontmatter?.title;
     <meta name="generator" content={Astro.generator} />
     <title>{title ? `${title} | Append-Only` : "Append-Only"}</title>
   </head>
-  <body class="bg-white flex flex-col min-h-screen">
-    <header class="container mx-auto max-w-[768px] px-4 py-16">
-      <div class="flex justify-between items-center">
-        <a href="/" class="text-2xl font-bold"
-          >Append-Only<span class="cursor font-light">_</span></a
+  <body class="bg-paper text-ink flex flex-col min-h-screen">
+    <header class="container mx-auto max-w-180 px-7 pt-16 pb-12">
+      <div class="flex justify-between items-baseline">
+        <a href="/" class="font-mono text-[1.05rem]"
+          >Append-Only<span class="cursor">_</span></a
         >
-        <nav class="space-x-6">
-          <a href="/articles" class="hover:opacity-60 transition"> Articles </a>
-          <a href="/contests" class="hover:opacity-60 transition"> Contests </a>
-          <a href="/about" class="hover:opacity-60 transition"> About </a>
+        <nav class="font-mono text-[12.5px] text-muted space-x-4">
+          <a href="/articles" class="hover:text-ink transition"> Articles </a>
+          <a href="/contests" class="hover:text-ink transition"> Contests </a>
+          <a href="/about" class="hover:text-ink transition"> About </a>
         </nav>
       </div>
     </header>
 
-    <main class="container mx-auto max-w-[768px] px-4 flex-grow">
+    <main class="container mx-auto max-w-180 px-7 grow">
       <Prose>
         <slot />
       </Prose>
     </main>
 
-    <footer class="mt-12">
-      <div class="container mx-auto max-w-[768px] px-4 py-6">
-        &copy; {new Date().getFullYear()} |
-        <a href="/about" class="underline hover:opacity-60 transition">
-          Rakeeb Hossain
-        </a>
-      </div>
+    <footer
+      class="container mx-auto max-w-180 px-7 py-10 mt-16 font-mono text-[12px] text-muted"
+    >
+      &copy; {new Date().getFullYear()} Rakeeb Hossain
     </footer>
   </body>
 </html>

@@ -22,28 +22,22 @@ const sortedArticles = articles.sort(
 ---
 
 <Layout title={"Articles"}>
-  <div>
-    <h1 class="prose-h1">Articles</h1>
+  <div class="not-prose">
+    <h1 class="text-2xl font-semibold tracking-[-0.01em] mb-8">Articles</h1>
 
-    <div class="space-y-8">
+    <div class="space-y-4.5">
       {
         sortedArticles.map((article) => (
-          <div>
-            <h2 class="text-xl font-semibold mb-2">
-              <a
-                href={`/articles/${titleToSlug(article.data.title)}`}
-                class="hover:underline"
-              >
-                {article.data.title}
-              </a>
-            </h2>
-            <div class="text-sm text-gray-600 mb-2">
-              {new Date(article.data.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </div>
+          <div class="flex gap-4.5 items-baseline">
+            <span class="font-mono text-[12.5px] text-muted whitespace-nowrap">
+              {new Date(article.data.date).toISOString().slice(0, 10)}
+            </span>
+            <a
+              href={`/articles/${titleToSlug(article.data.title)}`}
+              class="text-[1.05rem] hover:text-accent transition"
+            >
+              {article.data.title}
+            </a>
           </div>
         ))
       }
