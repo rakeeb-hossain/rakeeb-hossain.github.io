@@ -66,6 +66,29 @@ import Layout from "../../layouts/Layout.astro";
     return relativeFmt.format(Math.round(diff / WEEK), "week");
   }
 
+  function formatDuration(seconds: number | null): string | null {
+    if (seconds === null || seconds <= 0) return null;
+    const totalMinutes = Math.round(seconds / 60);
+    const h = Math.floor(totalMinutes / 60);
+    const m = totalMinutes % 60;
+    return h === 0 ? `${m}m` : `${h}h ${String(m).padStart(2, "0")}m`;
+  }
+
+  function formatCountdown(targetMs: number, now: number): string {
+    let s = Math.max(0, Math.floor((targetMs - now) / 1000));
+    const d = Math.floor(s / 86_400);
+    s %= 86_400;
+    const h = Math.floor(s / 3_600);
+    s %= 3_600;
+    const m = Math.floor(s / 60);
+    s %= 60;
+    const parts: string[] = [];
+    if (d > 0) parts.push(`${d}d`);
+    if (d > 0 || h > 0) parts.push(`${h}h`);
+    parts.push(`${m}m`, `${s}s`);
+    return parts.join(" ");
+  }
+
   function contestEndMs(contest: Contest): number {
     return contest.startMs + (contest.durationSeconds ?? 0) * 1000;
   }
@@ -180,13 +203,20 @@ import Layout from "../../layouts/Layout.astro";
     return JUDGES.find((j) => j.id === judge)?.label ?? judge;
   }
 
+  let countdownTimer: number | undefined;
+
   function renderNextContest(payload: ContestsPayload, now: number): void {
     const host = document.getElementById("next-contest");
     if (!host) return;
+    if (countdownTimer !== undefined) {
+      window.clearInterval(countdownTimer);
+      countdownTimer = undefined;
+    }
     host.replaceChildren();
 
+    // Soonest contest that hasn't finished yet (may already be live).
     const next = [...payload.codeforces, ...payload.atcoder]
-      .filter((c) => c.startMs > now)
+      .filter((c) => now < contestEndMs(c))
       .sort((a, b) => a.startMs - b.startMs)[0];
     if (!next) return;
 
@@ -212,13 +242,34 @@ import Layout from "../../layouts/Layout.astro";
         next.name,
       ),
     );
+
+    const metaParts = [judgeName(next.judge), absoluteFmt.format(next.startMs)];
+    const durationText = formatDuration(next.durationSeconds);
+    if (durationText) metaParts.push(durationText);
     card.appendChild(
-      el(
-        "div",
-        "mt-0.5 text-sm text-gray-500",
-        `${judgeName(next.judge)} · ${formatRelative(next.startMs, now)} · ${absoluteFmt.format(next.startMs)}`,
-      ),
+      el("div", "mt-0.5 text-sm text-gray-500", metaParts.join(" · ")),
     );
+
+    const countdown = el("div", "mt-2 text-sm font-medium tabular-nums");
+    card.appendChild(countdown);
+
+    const tick = (): void => {
+      const current = Date.now();
+      if (current >= next.startMs) {
+        countdown.className = "mt-2 text-sm font-medium text-red-600";
+        countdown.textContent = "● Live now";
+        if (countdownTimer !== undefined) {
+          window.clearInterval(countdownTimer);
+          countdownTimer = undefined;
+        }
+        return;
+      }
+      countdown.className = "mt-2 text-sm font-medium text-black tabular-nums";
+      countdown.textContent = `starts in ${formatCountdown(next.startMs, current)}`;
+    };
+
+    tick();
+    countdownTimer = window.setInterval(tick, 1000);
 
     host.appendChild(card);
   }
@@ -227,6 +278,8 @@ import Layout from "../../layouts/Layout.astro";
     const root = document.getElementById("contests-root");
     if (!root) return;
     const now = Date.now();
+
+    renderNextContest(payload, now);
 
     root.replaceChildren();
     for (const config of JUDGES) {
