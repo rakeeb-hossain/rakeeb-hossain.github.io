@@ -19,9 +19,17 @@ const title = explicitTitle ?? frontmatter?.title;
   <body class="bg-paper text-ink flex flex-col min-h-screen">
     <header class="container mx-auto max-w-165 px-7 pt-16 pb-12">
       <div class="flex justify-between items-baseline">
-        <a href="/" class="font-mono text-[1.4rem] font-semibold tracking-tight"
-          >Rakeeb Hossain</a
-        >
+        <div>
+          <a
+            href="/"
+            class="font-mono text-[1.4rem] font-semibold tracking-tight"
+          >
+            Rakeeb Hossain
+          </a>
+          <div class="font-mono text-[12px] text-muted mt-1.5">
+            San Francisco <span class="text-muted/50">·</span> Toronto
+          </div>
+        </div>
         <nav class="font-mono text-[1.05rem] font-medium space-x-4">
           <a
             href="/articles"
