@@ -16,12 +16,12 @@
    */
   --font-body: var(--font-serif);
 
-  /* Palette — "cool paper, deep maroon" (lab N6). */
-  --color-paper: #f5f6f8;
-  --color-ink: #16181d;
-  --color-muted: #656b76;
-  --color-rule: #e3e6ea;
-  --color-code-bg: #eceef1;
+  /* Palette — "soft white, deep maroon" (lab C3). */
+  --color-paper: #fcfcfc;
+  --color-ink: #26282d;
+  --color-muted: #727781;
+  --color-rule: #eeeeef;
+  --color-code-bg: #f2f2f3;
   /* Signature accent. Swap to #1d4ed8 for the classic-blue direction. */
   --color-accent: #7f1d1d;
 }

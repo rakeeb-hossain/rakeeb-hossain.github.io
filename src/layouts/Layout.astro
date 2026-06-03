@@ -14,18 +14,14 @@ const title = explicitTitle ?? frontmatter?.title;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title ? `${title} | Append-Only` : "Append-Only"}</title>
+    <title>{title ? `${title} | Rakeeb Hossain` : "Rakeeb Hossain"}</title>
   </head>
   <body class="bg-paper text-ink flex flex-col min-h-screen">
     <header class="container mx-auto max-w-180 px-7 pt-16 pb-12">
       <div class="flex justify-between items-baseline">
-        <a href="/" class="font-mono text-[1.05rem]"
-          >Append-Only<span class="cursor">_</span></a
-        >
+        <a href="/" class="font-mono text-[1.05rem]">Rakeeb Hossain</a>
         <nav class="font-mono text-[12.5px] text-muted space-x-4">
-          <a href="/articles" class="hover:text-ink transition"> Articles </a>
-          <a href="/contests" class="hover:text-ink transition"> Contests </a>
-          <a href="/about" class="hover:text-ink transition"> About </a>
+          <a href="/articles" class="hover:text-ink transition"> Writing </a>
         </nav>
       </div>
     </header>
@@ -43,20 +39,3 @@ const title = explicitTitle ?? frontmatter?.title;
     </footer>
   </body>
 </html>
-
-<style>
-  .cursor {
-    display: inline-block;
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink {
-    from,
-    to {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-  }
-</style>

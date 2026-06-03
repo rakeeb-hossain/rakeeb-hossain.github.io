@@ -1,9 +1,9 @@
-# Append-Only — Style Guide
+# Style Guide — rakeebhossain.com
 
 The design aesthetic for this site. The goal: a quiet, text-first
 "engineering logbook" that reads like a systems researcher's notebook —
 serif prose for thinking and writing, a monospace accent for the engineering
-signal, cool paper, and one restrained signature color.
+signal, soft-white paper, and one restrained signature color.
 
 All design decisions live as **tokens** in [`src/styles/global.css`](src/styles/global.css)
 (a Tailwind v4 `@theme` block). Change a token there and it propagates
@@ -19,10 +19,10 @@ site-wide.
    navigation, code, and the brand (engineer). Nothing else.
 3. **One accent, used sparingly.** The deep-maroon accent appears on links and
    hover states only — never on large fills.
-4. **Soft, not stark.** Cool off-white paper and a cool near-black ink instead
+4. **Soft, not stark.** Soft-white paper and a gentle near-black ink instead
    of pure black-on-white.
-5. **Systems signals are tasteful.** ISO dates, a blinking `_` cursor, monospace
-   labels — subtle nods, not a retro-terminal costume.
+5. **Systems signals are tasteful.** ISO dates and monospace labels — subtle
+   nods, not a retro-terminal costume.
 
 ---
 
@@ -46,11 +46,11 @@ site-wide.
 
 | Token            | Value     | Tailwind utility | Use |
 | ---------------- | --------- | ---------------- | --- |
-| `--color-paper`  | `#f5f6f8` | `bg-paper`       | Page background (cool off-white) |
-| `--color-ink`    | `#16181d` | `text-ink`       | Primary text (cool near-black) |
-| `--color-muted`  | `#656b76` | `text-muted`     | Metadata, dates, nav, labels |
-| `--color-rule`   | `#e3e6ea` | `border-rule`    | Hairline dividers |
-| `--color-code-bg`| `#eceef1` | `bg-code-bg`     | Inline code + code-block background |
+| `--color-paper`  | `#fcfcfc` | `bg-paper`       | Page background (soft white) |
+| `--color-ink`    | `#26282d` | `text-ink`       | Primary text (gentle near-black) |
+| `--color-muted`  | `#727781` | `text-muted`     | Metadata, dates, nav, labels |
+| `--color-rule`   | `#eeeeef` | `border-rule`    | Hairline dividers |
+| `--color-code-bg`| `#f2f2f3` | `bg-code-bg`     | Inline code + code-block background |
 | `--color-accent` | `#7f1d1d` | `text-accent`    | Links & hover (deep maroon) |
 
 - **To change the accent**, edit `--color-accent` once (e.g. `#1d4ed8` for the
@@ -75,9 +75,11 @@ site-wide.
 
 ## Components & conventions
 
-- **Brand:** `Append-Only` in mono with a blinking `_` cursor
-  (`.cursor` keyframes in `Layout.astro`).
-- **Navigation:** mono, `text-muted`, `12.5px`, hover → `text-ink`.
+- **Brand:** the author's name (`Rakeeb Hossain`) in mono, linking home.
+- **Navigation:** mono, `text-muted`, `12.5px`, hover → `text-ink`. Currently a
+  single `Writing` link to `/articles`.
+- **Home page:** the intro/about page (`src/pages/index.mdx`); there is no
+  separate `/about` route.
 - **Links (prose):** `text-accent`, underlined with `underline-offset-2`,
   hover fades to `opacity-70`.
 - **Dates:**
