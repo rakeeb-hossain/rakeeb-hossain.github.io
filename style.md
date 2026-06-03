@@ -60,10 +60,11 @@ site-wide.
 
 ## Layout & rhythm
 
-- **Measure:** the page shell is `max-w-180` (720px), centered, with `px-7`
-  (28px) gutters. **Reading prose is kept to the ~65ch typographic measure**
-  (do _not_ apply `max-w-none` to `Prose`) — long lines are the main thing that
-  makes serif text feel hard to read.
+- **Measure:** header, body, and footer all share one column — `max-w-165`
+  (660px), centered, with `px-7` (28px) gutters — so their edges align. This
+  width _is_ the reading measure (~75ch at 17px), so `Prose` is set to
+  `max-w-none` to fill the shared column rather than impose its own narrower cap.
+  Keep this column comfortably narrow; long lines make serif text hard to read.
 - **Body text:** `1.0625rem` (17px) with `1.65` line-height. Set via
   `prose-p`/`prose-li` modifiers in `Prose.astro`.
 - **Header:** brand left, nav right, baseline-aligned, generous space below

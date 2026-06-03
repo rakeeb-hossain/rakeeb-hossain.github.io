@@ -17,23 +17,30 @@ const title = explicitTitle ?? frontmatter?.title;
     <title>{title ? `${title} | Rakeeb Hossain` : "Rakeeb Hossain"}</title>
   </head>
   <body class="bg-paper text-ink flex flex-col min-h-screen">
-    <header class="container mx-auto max-w-180 px-7 pt-16 pb-12">
+    <header class="container mx-auto max-w-165 px-7 pt-16 pb-12">
       <div class="flex justify-between items-baseline">
-        <a href="/" class="font-mono text-[1.05rem]">Rakeeb Hossain</a>
-        <nav class="font-mono text-[12.5px] text-muted space-x-4">
-          <a href="/articles" class="hover:text-ink transition"> Writing </a>
+        <a href="/" class="font-mono text-[1.4rem] font-semibold tracking-tight"
+          >Rakeeb Hossain</a
+        >
+        <nav class="font-mono text-[1.05rem] font-medium space-x-4">
+          <a
+            href="/articles"
+            class="text-accent underline underline-offset-4 decoration-1 hover:opacity-70 transition"
+          >
+            Writing
+          </a>
         </nav>
       </div>
     </header>
 
-    <main class="container mx-auto max-w-180 px-7 grow">
+    <main class="container mx-auto max-w-165 px-7 grow">
       <Prose>
         <slot />
       </Prose>
     </main>
 
     <footer
-      class="container mx-auto max-w-180 px-7 py-10 mt-16 font-mono text-[12px] text-muted"
+      class="container mx-auto max-w-165 px-7 py-10 mt-16 font-mono text-[12px] text-muted"
     >
       &copy; {new Date().getFullYear()} Rakeeb Hossain
     </footer>
