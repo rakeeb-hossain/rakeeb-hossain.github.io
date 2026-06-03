@@ -47,7 +47,7 @@ site-wide.
 | Token            | Value     | Tailwind utility | Use |
 | ---------------- | --------- | ---------------- | --- |
 | `--color-paper`  | `#fcfcfc` | `bg-paper`       | Page background (soft white) |
-| `--color-ink`    | `#26282d` | `text-ink`       | Primary text (gentle near-black) |
+| `--color-ink`    | `#000000` | `text-ink`       | Primary text (black) |
 | `--color-muted`  | `#727781` | `text-muted`     | Metadata, dates, nav, labels |
 | `--color-rule`   | `#eeeeef` | `border-rule`    | Hairline dividers |
 | `--color-code-bg`| `#f2f2f3` | `bg-code-bg`     | Inline code + code-block background |
@@ -65,7 +65,7 @@ site-wide.
   width _is_ the reading measure (~75ch at 17px), so `Prose` is set to
   `max-w-none` to fill the shared column rather than impose its own narrower cap.
   Keep this column comfortably narrow; long lines make serif text hard to read.
-- **Body text:** `1.0625rem` (17px) with `1.65` line-height. Set via
+- **Body text:** `1.1875rem` (19px) with `1.7` line-height. Set via
   `prose-p`/`prose-li` modifiers in `Prose.astro`.
 - **Header:** brand left, nav right, baseline-aligned, generous space below
   (`pt-16 pb-12`). No rule under it.
